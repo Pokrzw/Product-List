@@ -18,7 +18,7 @@ export const addItem = (payload: itemDetails): Action => ({
     type: 'ADD_NOTE',
     payload: { ...payload }
 })
-export const editItem = (payload: string): Action => ({
+export const editItem = (payload: itemDetails): Action => ({
     type: 'EDIT_NOTE',
     payload
 })

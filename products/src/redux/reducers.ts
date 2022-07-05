@@ -1,6 +1,6 @@
 import { itemDetails, allItemActions } from "./actions";
 
-interface ItemState {
+export interface ItemState {
     items: itemDetails[]
 }
 const initialState = {
