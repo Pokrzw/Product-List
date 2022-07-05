@@ -1,8 +1,13 @@
 import express, {Express, response} from 'express'
 import mongoose from 'mongoose';
-const app: Express = express();
-import products from './routes/product'
 
+
+const app: Express = express();
+
+import products from './routes/product'
+const cors = require('cors')
+
+app.use(cors())
 app.use(express.json())
 app.use('/products', products)
 
@@ -23,3 +28,4 @@ mongoose
         })
     })
     .catch(error => console.error('Error while connecting to MongoDB'))
+    

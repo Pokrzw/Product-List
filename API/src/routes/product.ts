@@ -18,7 +18,7 @@ router.post('/add', async(req:Request, res:Response) => {
         amount:Number,
         prodDate:String,
         category:String,
-        description:String
+        description?:String
     }
 
     let {
