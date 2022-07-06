@@ -1,10 +1,13 @@
+import axios from "axios"
+import { Dispatch } from "redux"
+
 type Action = {
     type: string,
     payload: any
 }
 
 export type itemDetails = {
-    id:string
+    _id:string,
     name: string,
     price: number,
     amount: number,
@@ -15,18 +18,22 @@ export type itemDetails = {
 
 
 export const addItem = (payload: itemDetails): Action => ({
-    type: 'ADD_NOTE',
-    payload: { ...payload }
+    type: 'ADD_ITEM',
+    payload
 })
 export const editItem = (payload: itemDetails): Action => ({
-    type: 'EDIT_NOTE',
+    type: 'EDIT_ITEM',
     payload
 })
 export const deleteItem = (payload: string): Action => ({
-    type: 'DELETE_NOTE',
+    type: 'DELETE_ITEM',
     payload
 })
 
+export const loadItems = (payload: itemDetails[]):Action => ({
+    type: 'LOAD_ITEMS',
+    payload
+})
 
 type addItemAction = {
     type: 'ADD_ITEM',
@@ -38,6 +45,11 @@ type editItemAction = {
     payload: itemDetails
 }
 
-type deleteItemAction = { type: "DELETE_ITEM", payload:{id:string}}
+type deleteItemAction = { type: "DELETE_ITEM", payload:{_id:string}}
 
-export type allItemActions = addItemAction | editItemAction | deleteItemAction
+type loadItemAction = {
+    type: 'LOAD_ITEMS',
+    payload: itemDetails[]
+}
+export type allItemActions = addItemAction | editItemAction | deleteItemAction |loadItemAction
+

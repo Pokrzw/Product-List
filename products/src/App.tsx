@@ -5,56 +5,47 @@ import { useDispatch } from "react-redux";
 import { addItem, editItem, deleteItem } from "./redux/actions";
 import { useSelector } from "react-redux";
 import { ItemState } from "./redux/reducers";
+import { loadItemsThunk } from "./redux/actions";
+
 
 function App() {
+
+  
   const dispatch = useDispatch()
-  const [dbItems, setDbItems] = useState<itemDetails[]>([]);
-  const Items = useSelector<ItemState, ItemState['items']>((state)=>state.items)
-  useEffect(() => {
-    (
-      async () => {
-        await
-          axios
-            .get('http://localhost:5000/products')
-            .then((item) => {
-              if(item!==undefined){
-                item.data.allProducts.map((item:itemDetails) => {
-                  dispatch(addItem(item))
-                })
-                
-                setDbItems(item.data.allProducts)
-              }
-            })
-      }
-    )();
-    
-  }, []);
+  const items = useSelector<ItemState, ItemState['items']>((state)=>state.items)
+  const onSave = () => {
+
+  }
+  const onLoad = () => {
+
+  }
 
   return (
     <div className="App">
-      <>
-      {Items.map((x)=>{
+      <div className="l">
+      {items.map((x:itemDetails)=>{
         return(
-          <>{x.description}</>
+          <div className="l">{x.name}</div>
         )
       })}
-      </>
-      {
-        dbItems.map((item)=>{
-          return(
-            <div key={item.id}>{item.name}
-            
-            <button onClick={
-              () => {
-                dispatch(editItem({...item, id: item.id, name:"jajko"}))
-              }
-            }>Zmien</button>
-            </div>
-            
-          )
-        })
+      </div>
+     lsd
+     <button onClick={
+      () => {
+        dispatch(addItem(
+          {
+            _id:"string",
+                name: 'łubudubu',
+                price: 2,
+                amount: 1,
+                prodDate: 'string',
+                category: 'string',
+                description: 'string'}
+        ))
       }
-      
+     }>Add</button>
+     <button onClick={onSave}>Save</button>
+     <button onClick={onLoad}>Load</button>
     </div>
   );
 }
