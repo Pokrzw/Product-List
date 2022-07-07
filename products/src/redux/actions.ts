@@ -6,15 +6,23 @@ type Action = {
     payload: any
 }
 
+// export type itemDetails = {
+//     _id:string,
+//     name: string,
+//     price: number,
+//     amount: number,
+//     prodDate: string,
+//     category: string,
+//     description: string
+// }
+
 export type itemDetails = {
-    _id:string,
-    name: string,
-    price: number,
-    amount: number,
-    prodDate: string,
-    category: string,
-    description: string
+    userId: number,
+	id: number,
+	title: string,
+	completed: boolean
 }
+
 
 
 export const addItem = (payload: itemDetails): Action => ({
@@ -30,10 +38,7 @@ export const deleteItem = (payload: string): Action => ({
     payload
 })
 
-export const loadItems = (payload: itemDetails[]):Action => ({
-    type: 'LOAD_ITEMS',
-    payload
-})
+
 
 type addItemAction = {
     type: 'ADD_ITEM',
@@ -47,9 +52,6 @@ type editItemAction = {
 
 type deleteItemAction = { type: "DELETE_ITEM", payload:{_id:string}}
 
-type loadItemAction = {
-    type: 'LOAD_ITEMS',
-    payload: itemDetails[]
-}
-export type allItemActions = addItemAction | editItemAction | deleteItemAction |loadItemAction
+
+export type allItemActions = addItemAction | editItemAction | deleteItemAction
 

@@ -1,0 +1,35 @@
+.Interface {
+    display: flex;
+    flex-direction: column;
+
+    .allItems {
+        margin-top: 10px;
+        // padding: 20px 5px;
+        border-radius: 10px;
+        overflow-y: scroll;
+        position: relative;
+        width: 80vw;
+        display: flex;
+        overflow-x: hidden;
+        flex-direction: column;
+        height: 70vh;
+        // background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-dark.png');
+        
+
+        .item {
+            scroll-snap-align: start;
+        }
+    }
+    .bgImage{
+        border-radius: 10px;
+        width: 80vw;
+        height: 70vh;
+        margin-top: 10px;
+        display: block;
+        z-index: 10;
+        position: absolute;
+        box-shadow: inset 0px 0px 70px 7px #000000a2;
+        background-color: #06080aa2;
+       
+    }
+}

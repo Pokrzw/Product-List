@@ -1,53 +1,58 @@
-import axios from "axios";
 import { itemDetails } from "./redux/actions";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItem, editItem, deleteItem } from "./redux/actions";
 import { useSelector } from "react-redux";
 import { ItemState } from "./redux/reducers";
-import { loadItemsThunk } from "./redux/actions";
+import axios from "axios";
+import Interface from "./components/Interface";
+import './stylesheets/App.scss'
+
 
 
 function App() {
 
+  const loadData = async() => {
+    const data:itemDetails[] = await axios
+      .get('https://jsonplaceholder.typicode.com/todos')
+      .then(response => response.data)
+      .then((data)=>{
+
+        if(data){
+          setDbData(data)
+          data.map((item:itemDetails) => {
+            dispatch(addItem(item))
+          })
+        }
+        setLoadingFinished(true)
+        return data
+      })
+    
+
+      
+  }
   
+  const [dbData, setDbData] = useState<itemDetails[]>([]);
+  const [loadingFinished, setLoadingFinished] = useState(false);
   const dispatch = useDispatch()
+
   const items = useSelector<ItemState, ItemState['items']>((state)=>state.items)
-  const onSave = () => {
+  
+  useEffect(() => {
+    loadData()    
+  }, [loadingFinished]);
 
-  }
-  const onLoad = () => {
-
-  }
-
-  return (
-    <div className="App">
-      <div className="l">
-      {items.map((x:itemDetails)=>{
-        return(
-          <div className="l">{x.name}</div>
-        )
-      })}
+  if(loadingFinished){
+    return (
+      <div className="App">
+        <Interface/>
       </div>
-     lsd
-     <button onClick={
-      () => {
-        dispatch(addItem(
-          {
-            _id:"string",
-                name: 'łubudubu',
-                price: 2,
-                amount: 1,
-                prodDate: 'string',
-                category: 'string',
-                description: 'string'}
-        ))
-      }
-     }>Add</button>
-     <button onClick={onSave}>Save</button>
-     <button onClick={onLoad}>Load</button>
-    </div>
-  );
+    );
+  } else {
+    return(
+      <>Loading...</>
+    )
+  }
 }
 
 export default App;
