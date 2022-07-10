@@ -10,11 +10,11 @@
     margin-right: auto;
 
     font-weight: 800;
-    color: rgba(255, 255, 255, 0.63);
+    color: rgba(255, 255, 255, 0.829);
     border-radius: 10px;
     margin-top: 50px;
 
-    background: linear-gradient(0deg, rgb(35, 45, 66) 0%, rgb(46, 60, 90) 50%, rgb(52, 68, 100) 100%);
+    background: #781edc;
     padding: 10px;
     outline: 1px solid rgba(38, 48, 63, 0.404);
     box-shadow: 0px 0px 70px 7px rgba(0, 0, 0, 0.404);
@@ -24,19 +24,31 @@
         opacity: 0;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
         font-size: 0.9rem;
         transform: scaleY(0);
         transform-origin: top;
-        color: rgba(255, 255, 255, 0.658);
+        background-color:#781edc;
+        width: 80%;
+        border-radius: 10px;
+        color:  rgba(255, 255, 255, 0.829);
         transition: all ease 0.3s;
-
         .buttons {
+            display: flex;
+            justify-content: center;
             button {
+                cursor: pointer;
                 background-color: rgba(255, 255, 255, 0);
                 border: none;
-                font-size: 1.2rem;
-                color: rgba(255, 255, 255, 0.63);
+                font-size: 1.5rem;
+                color: rgba(255, 255, 255, 0.829);
+                transition: all 0.3s ease-in-out;
+                
+
+                &:hover{
+                    font-size: 1.2rem;
+                }
             }
         }
 
@@ -50,4 +62,5 @@
     max-height: 80vh;
     font-size: 0.9rem;
     opacity: 100%;
+    padding: 10px 20px;
 }

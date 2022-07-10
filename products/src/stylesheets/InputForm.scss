@@ -1,0 +1,155 @@
+.InputForm{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: rgba(0, 0, 0, 0.459);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    button{
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+        align-self: flex-start;
+        font-size: 20px;
+        color: white;
+        cursor: pointer;
+        transition: all ease-in-out 0.3s;
+
+        &:hover{
+            color: #781edc;
+            font-size: 17px;
+        }
+
+        &:focus{
+            font-size: 15px;
+        }        
+    }
+    .container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        .header{
+            display: flex;
+            padding-right: 20px;
+            position: relative;
+            font-family: 'Biryani', sans-serif;
+        }
+
+        
+        form{
+            padding: 20px;
+            font-family: 'Inconsolata', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            ;
+            justify-content: center;
+            
+            :focus{
+                background-color: rebeccapurple;    
+            }
+            
+            .inputField{
+                font-family: 'Inconsolata', monospace;
+                display: flex;
+                flex-direction: column;
+                margin-top: 10px;
+
+                .errorMsg{
+                    color: #e2c62a;
+                    font-size: 15px;
+                    padding-left: 5px;
+                    font-style: italic;
+                }
+            }
+
+            input,select{
+                
+                border: none;
+                background-color: #1F2125;
+                color: white;
+                padding: 5px;
+                border-radius: 5px;
+                outline: none;
+
+                
+            }
+
+           
+
+            input[type=number] {  
+                appearance: textfield;
+            }
+
+        }  
+        
+        
+        
+        button[type=submit]{
+            background-color: #781edc;
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin-top: 20px;
+        }
+
+            
+    }
+}
+
+@keyframes loadDividerScreen{
+    0%{
+        transform: scaleY(0);
+    }
+    100%{
+        transform: scaleY(1);
+    }
+}
+
+@keyframes loadDividerPhone{
+    0%{
+        transform: scaleX(0);
+    }
+    100%{
+        transform: scaleX(1);
+    }
+}
+
+@media screen and (max-width: 500px) {
+ .InputForm{
+    .container{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .header{
+            position: relative;
+            &:before{
+                bottom: 0;
+                content: '';
+                position: absolute;
+                display: block;
+                width: 100%;
+                border-bottom: 1px solid  white;
+                animation: 0.3s ease-in-out 0s 1 loadDividerPhone;
+            }
+        }
+    }
+ }   
+}
+
+@media screen and(min-width: 500px){
+    .InputForm{
+        .header{
+            &:after{
+                width: 100%;
+                content: '';
+                position: absolute;
+                top: -100%;
+                display: block;
+                height: 300%;
+                border-right: 1px solid  white;
+                animation: 0.3s ease-in-out 0s 1 loadDividerScreen;
+            }
+        }
+    }
+}

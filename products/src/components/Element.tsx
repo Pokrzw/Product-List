@@ -1,26 +1,72 @@
 import { TiEdit } from 'react-icons/ti'
+import { Formik, Form, Field } from "formik";
 import { HiOutlineTrash } from 'react-icons/hi';
-
+import { itemDetails } from '../redux/actions';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { editItem, deleteItem } from '../redux/actions';
+import { useState } from 'react';
+import InputForm from './InputForm';
+import { AiFillCloseCircle } from 'react-icons/ai';
 import '../stylesheets/Element.scss'
-interface Props {
-    userId: number,
-    id: number,
-    title: string,
-    completed: boolean
+import { useNavigate } from 'react-router';
+
+
+interface Props{
+    _id:string,
+    name:string,
+    price:number,
+    amount:number,
+    prodDate:string,
+    category:string,
+    description:string,
 }
-const Element = ({ userId, id, title, completed }: Props) => {
+
+const Element = ({_id,
+    name,
+    price,
+    amount,
+    prodDate,
+    category,
+    description }:Props) => {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const deleteFromDB = async() => {
+        await axios.delete(`http://localhost:5000/products/${_id}`)
+    }
+    const valueObject:itemDetails = {_id, name, price, amount, prodDate, category, description}
+    const date = new Date(prodDate)
+
     return (
         <div className="Element">
             <div className="main">
-            {title}
+            {name}
             </div>
+            
             <div className="options">
-                {userId}
+               <div className="data">
+               <div className="p"> Price:{price}</div>
+               <div className="p">Amount: {amount}</div>
+               <div className="p">Production Date: {`${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`}</div>
+               <div className="p">category: {category}</div>
+               <div className="p">description: {description}</div>
                 <div className="buttons">
-                    <button><TiEdit /></button>
-                    <button><HiOutlineTrash /></button>
+                    <button  onClick={()=>{
+                        navigate(`${_id}/edit`)
+                    }}><TiEdit /></button>
+                    <button onClick={
+                        () => {
+                            dispatch(deleteItem(_id))
+                            deleteFromDB()                            
+                        }
+                    }><HiOutlineTrash /></button>
+               </div>
                 </div>
+            
             </div>
+            
+            
         </div>
     );
 }

@@ -6,30 +6,24 @@ import { useSelector } from "react-redux";
 import { ItemState } from "./redux/reducers";
 import axios from "axios";
 import Interface from "./components/Interface";
+import InputForm from "./components/InputForm";
 import './stylesheets/App.scss'
-
-
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
 
   const loadData = async() => {
     const data:itemDetails[] = await axios
-      .get('https://jsonplaceholder.typicode.com/todos')
-      .then(response => response.data)
+      .get('http://localhost:5000/products')
+      .then(response => response.data.allProducts)
       .then((data)=>{
-
+        
         if(data){
           setDbData(data)
-          data.map((item:itemDetails) => {
-            dispatch(addItem(item))
-          })
         }
         setLoadingFinished(true)
         return data
       })
-    
-
-      
   }
   
   const [dbData, setDbData] = useState<itemDetails[]>([]);
@@ -40,17 +34,29 @@ function App() {
   
   useEffect(() => {
     loadData()    
+    dbData.map((x:itemDetails)=>{
+      dispatch(addItem(x))
+    })
   }, [loadingFinished]);
 
   if(loadingFinished){
     return (
       <div className="App">
-        <Interface/>
+        <BrowserRouter>
+        <Routes>
+        <Route path="/" element={<Navigate to="/products" />}/>
+
+          <Route path="/products/" element={<Interface/>}/>
+          <Route path="products/:id/edit" element={<InputForm/>}/>
+          <Route path="/products/add" element={<InputForm/>}/>
+        </Routes>
+        </BrowserRouter>
+
       </div>
     );
   } else {
     return(
-      <>Loading...</>
+      <div className="loadingScreen">Loading...</div>
     )
   }
 }

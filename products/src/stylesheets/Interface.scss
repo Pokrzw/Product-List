@@ -1,10 +1,9 @@
 .Interface {
     display: flex;
     flex-direction: column;
-
+    align-items: center;
     .allItems {
         margin-top: 10px;
-        // padding: 20px 5px;
         border-radius: 10px;
         overflow-y: scroll;
         position: relative;
@@ -12,10 +11,7 @@
         display: flex;
         overflow-x: hidden;
         flex-direction: column;
-        height: 70vh;
-        // background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-dark.png');
-        
-
+        height: 70vh;        
         .item {
             scroll-snap-align: start;
         }
