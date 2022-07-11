@@ -2,8 +2,6 @@ import { useSelector } from "react-redux";
 import { ItemState } from "../redux/reducers";
 import { itemDetails } from "../redux/actions";
 import Element from "./Element";
-import InputForm from "./InputForm";
-import { useState } from "react";
 import '../stylesheets/globalStyles.scss'
 import '../stylesheets/Interface.scss'
 import { useNavigate } from "react-router";

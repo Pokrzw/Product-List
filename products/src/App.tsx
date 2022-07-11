@@ -1,7 +1,7 @@
 import { itemDetails } from "./redux/actions";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addItem, editItem, deleteItem } from "./redux/actions";
+import { addItem } from "./redux/actions";
 import { useSelector } from "react-redux";
 import { ItemState } from "./redux/reducers";
 import axios from "axios";

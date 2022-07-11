@@ -1,13 +1,9 @@
 import { TiEdit } from 'react-icons/ti'
-import { Formik, Form, Field } from "formik";
 import { HiOutlineTrash } from 'react-icons/hi';
 import { itemDetails } from '../redux/actions';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { editItem, deleteItem } from '../redux/actions';
-import { useState } from 'react';
-import InputForm from './InputForm';
-import { AiFillCloseCircle } from 'react-icons/ai';
+import { deleteItem } from '../redux/actions';
 import '../stylesheets/Element.scss'
 import { useNavigate } from 'react-router';
 

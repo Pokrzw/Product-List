@@ -4,7 +4,7 @@ import { itemDetails } from '../redux/actions';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { addItem, editItem, deleteItem } from '../redux/actions'
+import { addItem, editItem} from '../redux/actions'
 import axios from "axios";
 import * as yup from 'yup';
 import { useParams } from "react-router-dom";
@@ -64,7 +64,6 @@ const InputForm = () => {
         } else {
             setformMode('add')
         }
-        console.log(initialValues);
 
     }, [formMode]);
 
@@ -106,27 +105,27 @@ const InputForm = () => {
                             <div className="inputField">
                                 <label htmlFor="name">Product name</label>
                                 <Field id='name' placeholder={initialValues.name} name='name'></Field>
-                                <ErrorMessage component='div' className='errorMsg' name='name'></ErrorMessage>
+                                <ErrorMessage data-testid='name' component='div' className='errorMsg' name='name'></ErrorMessage>
                             </div>
 
                             <div className="inputField">
-                                <label htmlFor="name">Product price</label>
+                                <label htmlFor="price">Product price</label>
                                 <Field id='price' placeholder={initialValues.price} name='price' type='number'></Field>
-                                <ErrorMessage component='div' className='errorMsg' name='price'></ErrorMessage>
+                                <ErrorMessage  component='div' className='errorMsg' name='price'></ErrorMessage>
                             </div>
 
                             <div className="inputField">
-                                <label htmlFor="name">Product amount</label>
+                                <label htmlFor="amount">Product amount</label>
                                 <Field id='amout' placeholder={initialValues.amount} name='amount' type='number'></Field>
                                 <ErrorMessage component='div' className='errorMsg' name='amount'></ErrorMessage>
                             </div>
                             <div className="inputField">
-                                <label htmlFor="name">Product date</label>
+                                <label htmlFor="date">Product date</label>
                                 <Field id='prodDate' placeholder={initialValues.prodDate} name='prodDate' type='date'></Field>
                             
                             </div>
                             <div className="inputField">
-                                <label htmlFor="name">Product category</label>
+                                <label htmlFor="category">Product category</label>
                                 <Field id='category' name='category' as='select'>
                                     <option value="smartphones">smartphones</option>
                                     <option value="laptops">laptops</option>
@@ -134,7 +133,7 @@ const InputForm = () => {
                                 </Field>
                             </div>
                             <div className="inputField">
-                                <label htmlFor="name">Product description (optional)</label>
+                                <label htmlFor="description">Product description (optional)</label>
                                 <Field id='description' placeholder={initialValues.description} name='description'></Field>
                             </div>
 
