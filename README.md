@@ -5,15 +5,15 @@ It consists of 2 parts:
 2. a frontend in react where the data is displayed
 
 The following README is an instruction on how to make them both work. 
-It will also go into details of how they work in later sections.
+It will also go into details of how they work in thelater sections.
 
 # table of contents
 - [API](#API)
     - [setup (how to install)](#setup)
-        - [about setting up mongoDB](#about-setting-up-mongodb)
+        - [setting up mongoDB](#setting-up-mongodb)
         - [running the API](#running-the-api)
     - how it works
-        - [avaliable endpoints](#avaliable-routes)
+        - [available endpoints](#available-endpoints)
         - [mongodb schema](#mongodb-schema)
             - [data types inside the Product schema](#mongodb-schema)
 
@@ -29,7 +29,7 @@ In order to make this API work, you need to:
 1. run mongoDB on your machine
 2. run this API on your machine
 
-### about setting up MongoDB:
+### setting up MongoDB:
 The mongodb setup is described by the following parameters:
 
     host: '127.0.0.1',
@@ -73,16 +73,16 @@ In order to run this API with compiled JavaScript code,
 >npm run start
 
 This API runs on port 5000 so make sure that it is not occupied by any other application.
-## avaliable endpoints
+## available endpoints
 This is a typical REST API with following endpoints:
 - GET 
-    - avaliable on route 
+    - available on route 
     > localhost:27017/products
     - returns an array called allProducts, that contains every item in the database
     
 - POST
     - add new item to database
-    - avaliable on route 
+    - available on route 
     > localhost:27017/products/add
     - accepts body with following parameters:
         - name,
@@ -95,7 +95,7 @@ This is a typical REST API with following endpoints:
     - returns the body of the request on succesful query 
 - PUT
     - edit an item with given id
-    -avaliable on route 
+    -available on route 
     > localhost:27017/products/:id/edit
     - accepts body containing following parameters:
         - name,
@@ -110,12 +110,12 @@ This is a typical REST API with following endpoints:
 
 - DELETE
     - delete an item with given id
-    - avaliable on route 
+    - available on route 
     > localhost:27017/products/:id
     - returns the body of the item that has just been deleted
 
 ## mongoDB schema
-This API uses express.js and mongoose which is a JavaScript package that allows an express app to connect to a mongoDB database. It also introduces some level of data validation on the backend side.
+This API uses express.js and mongoose, which is a JavaScript package that allows an express app to connect to a mongoDB database. It also introduces some level of data validation on the backend side.
 
 MongoDB schemas represent a form of an object that will be added to the database. 
 
@@ -163,7 +163,7 @@ Your app should be running on port 3000 on localhost.
 
 ## Use
 
-This app allows you to use all the avaliable routes in the api. It first loads data from the API and then stores it in a redux store. All actions taken in this app affect both the store state and the database. 
+This app allows you to use all the available routes in the api. It first loads data from the API and then stores it in a redux store. All actions taken in this app affect both the store state and the database. 
 
 ### adding items
 
@@ -186,7 +186,7 @@ Clicking the trash icon will remove the item.
 ## The redux store and the API calls
 This app first loads data from API using axios. Then, when the data is loaded, it is dispatched to a reducer with ADD_ITEM action.
 
-Each edit and delete also makes an API call and dispatches an adequate action,so for example, when you edit an item, you edit it both in the database and in the store.
+Each edit and delete also makes an API call and dispatches an adequate action, so for example, when you edit an item, you edit it both in the database and in the store.
 
 
 
