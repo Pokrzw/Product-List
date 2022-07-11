@@ -56,7 +56,8 @@ function App() {
     );
   } else {
     return(
-      <div className="loadingScreen">Loading...</div>
+      <div className="loadingScreen">
+        <div className="load">Loading <div className="dot">.</div><div className="dot">.</div><div className="dot">.</div></div>        </div>
     )
   }
 }

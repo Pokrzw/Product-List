@@ -23,7 +23,7 @@ const productSchema:Schema = new Schema({
     category:{
         type:String,
         required: true,
-        enum:['smartphones', 'laptops', 'display']
+        enum:['smartphones', 'laptops', 'displays']
     },
     description:{
         type:String,

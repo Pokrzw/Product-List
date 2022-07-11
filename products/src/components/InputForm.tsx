@@ -118,12 +118,12 @@ const InputForm = () => {
                             <div className="inputField">
                                 <label htmlFor="name">Product amount</label>
                                 <Field id='amout' placeholder={initialValues.amount} name='amount' type='number'></Field>
-                                <ErrorMessage component='div' className='errorMsg' name='price'></ErrorMessage>
+                                <ErrorMessage component='div' className='errorMsg' name='amount'></ErrorMessage>
                             </div>
                             <div className="inputField">
                                 <label htmlFor="name">Product date</label>
                                 <Field id='prodDate' placeholder={initialValues.prodDate} name='prodDate' type='date'></Field>
-                                <ErrorMessage component='div' className='errorMsg' name='price'></ErrorMessage>
+                            
                             </div>
                             <div className="inputField">
                                 <label htmlFor="name">Product category</label>
