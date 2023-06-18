@@ -1,6 +1,14 @@
-import express, {Express, response} from 'express'
+import express, {Express, response} from 'express';
 import mongoose from 'mongoose';
+import { Issuer } from "openid-client";
+import { IDProvider } from './kcprovider';
 
+
+IDProvider({
+  url:"http://localhost:8080/realms/realm1/.well-known/openid-configuration",
+  client_id: "api-service",
+  secret: "nQVa49z5h28OzTAfpkoO0kxWXCr887Xm"
+})
 
 const app: Express = express();
 
@@ -13,7 +21,7 @@ app.use('/products', products)
 
 
 const dbData = {
-    host: '127.0.0.1',
+    host: 'mongodb',
     port: 27017,
     database: 'products'
 }
