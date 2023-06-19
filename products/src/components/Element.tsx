@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { deleteItem } from '../redux/actions';
 import '../stylesheets/Element.scss'
 import { useNavigate } from 'react-router';
-
+import { useAuth } from "react-oidc-context";
 
 interface Props{
     _id:string,
@@ -26,10 +26,11 @@ const Element = ({_id,
     category,
     description }:Props) => {
 
+    const auth = useAuth()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const deleteFromDB = async() => {
-        await axios.delete(`http://localhost:5000/products/${_id}`)
+        await axios.delete(`http://localhost:5000/products/${_id}`, {headers: { "Authorization":"Bearer " + auth.user?.access_token }})
     }
     const valueObject:itemDetails = {_id, name, price, amount, prodDate, category, description}
     const date = new Date(prodDate)

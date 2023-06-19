@@ -3,22 +3,23 @@ import { Client, Issuer } from "openid-client";
 let IdP: Issuer;
 let IdPClient: Client;
 
-interface IDConfig {
-  url: string;
+interface InitializeIdentityProviderConfig {
+  well_known_url: string;
   client_id: string;
-  secret?: string;
+  client_secret?: string;
 }
 
-const IDProvider = async ({
-  url,
+const initializeIdentityProvider = async ({
+  well_known_url,
   client_id,
-  secret,
-}: IDConfig) => {
+  client_secret,
+}: InitializeIdentityProviderConfig) => {
   try {
-    IdP = await Issuer.discover(url);
+    IdP = await Issuer.discover(well_known_url);
+    console.log(IdP.metadata)
     IdPClient = new IdP.Client({
       client_id,
-      secret,
+      client_secret,
     });
   } catch (err) {
     console.error(err);
@@ -31,4 +32,4 @@ const getIdPClient = (): Client | undefined => {
   } else return undefined;
 };
 
-export { IDProvider, getIdPClient };
+export { initializeIdentityProvider, getIdPClient };

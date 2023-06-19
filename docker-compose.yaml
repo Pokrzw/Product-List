@@ -4,17 +4,17 @@ services:
     image: mongo:latest
     ports:
       - 27017:27017
-  api: 
-    build: ./API
-    depends_on: 
-      - mongodb
-    container_name: api
-    ports:
-      - "5000:5000"
+  # api: 
+  #   build: ./API
+  #   depends_on: 
+  #     - mongodb
+  #   container_name: api
+  #   ports:
+  #     - "5000:5000"
   keycloak:
     depends_on: 
       - mongodb
-      - api
+      # - api
     image: quay.io/keycloak/keycloak:21.1.1
     environment:
       - KEYCLOAK_ADMIN=admin

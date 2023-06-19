@@ -11,18 +11,21 @@ import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { ItemState } from '../redux/reducers';
 import { useNavigate } from "react-router";
+import { useAuth } from "react-oidc-context";
+
 type productId = {
     id: string | undefined
 }
 
 const InputForm = () => {
 
+    const auth = useAuth()
     const { id } = useParams<productId>();
     const items = useSelector<ItemState, ItemState['items']>((state) => state.items)
     const navigate = useNavigate()
     const [formMode, setformMode] = useState<string>('');
     const dispatch = useDispatch()
-    const newId = new Date().getTime().toString()
+    const newId = ""
     const blankObject: itemDetails = {
         _id: newId,
         name: '',
@@ -43,11 +46,11 @@ const InputForm = () => {
     });
 
     const addToDB = async (values: itemDetails) => {
-        await axios.post('http://localhost:5000/products/add', values)
+        return await axios.post('http://localhost:5000/products/add', values, {headers: { "Authorization":"Bearer " + auth.user?.access_token }})
     }
 
     const editDB = async (values: itemDetails) => {
-        await axios.put(`http://localhost:5000/products/${values._id}/edit`, values)
+        return await axios.put(`http://localhost:5000/products/${values._id}/edit`, values, {headers: { "Authorization":"Bearer " + auth.user?.access_token }})
     }
 
     const getInitialValues = (): itemDetails => {
@@ -89,12 +92,20 @@ const InputForm = () => {
                     validationSchema={schema}
                     onSubmit={(values: itemDetails) => {
                         if (formMode === 'add') {
-                            dispatch(addItem(values))
                             addToDB(values)
+                            .then((res) => {
+                                dispatch(addItem({...values, _id:res.data}))
+                            })
                         }
                         if (formMode === 'edit') {
-                            dispatch(editItem(values))
                             editDB(values)
+                            .then((res) => {
+                                dispatch(editItem(values))
+                                console.log(res)
+                            })
+                            
+                            
+                            
                         }
                         navigate('/products')
                     }}

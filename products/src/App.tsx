@@ -9,12 +9,15 @@ import Interface from "./components/Interface";
 import InputForm from "./components/InputForm";
 import './stylesheets/App.scss'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-
+import { useAuth } from "react-oidc-context";
+  
 function App() {
 
+  const auth = useAuth()
+  
   const loadData = async() => {
     const data:itemDetails[] = await axios
-      .get('http://localhost:5000/products')
+      .get('http://localhost:5000/products', {headers: { "Authorization":"Bearer " + auth.user?.access_token }})
       .then(response => response.data.allProducts)
       .then((data)=>{
         

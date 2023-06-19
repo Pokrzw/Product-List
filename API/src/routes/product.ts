@@ -38,8 +38,9 @@ router.post('/add', async(req:Request, res:Response) => {
         category,
         description
       })
-      await product.save()  
-      return res.send(req.body);
+      const prodId = await product.save()
+
+      return res.send(prodId._id);
     
 })
 
